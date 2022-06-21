@@ -22,7 +22,10 @@ public class Data {
     }
 
     public void entraAno(int a) {
-
+        if(a<0) {
+            out.println("Ano informado está fora do escopo");
+            return;
+        }
         this.ano =a;
 
     }
@@ -31,25 +34,77 @@ public class Data {
         int a;
         out.println("Ano:");
         a = ler.nextInt();
+        if(a<0) {
+            out.println("Ano informado está fora do escopo");
+            return;
+        }
         this.ano = a;
 
     }
 
     public void entraMes(int m){
+        if(m<0 || m > 12) {
+            out.println("Mês informado está fora do escopo");
+            return;
+        }
+
         this.mes = m;
     }
 
     public void entraMes(){
         int m;
-        do {
+
+
             out.println("Mes : (em número) ");
             m = ler.nextInt();
-            out.println();
-        } while (m < 1 || m>12);
+        if(m<0 || m > 12) {
+            out.println("Mês informado está fora do escopo");
+            return;
+        }
+
 
         this.mes = m;
     }
 
+    public void entraDia(int d) {
+            checandoDia(d);
+        }
+
+    public void entraDia() {
+        int d;
+        out.println("Dia :");
+        d = ler.nextInt();
+        checandoDia(d);
+    }
+
+
+    public void checandoDia(int d) {
+        switch (retMes()) {
+            case 1 :
+                if(d<1 || d>30)
+                {
+                    out.println("Dia fora do escopo");
+                    break;
+                }
+                this.dia = d;
+                break;
+            case 2:
+                if(bisexto()== true) {
+                    if(d<1 || d>29) {
+                        out.println("Dia fora do escopo (Esse ano é bissexto)");
+                        break;
+                    }
+                    this.dia =d;
+                    break;
+                }
+                if(d<1 || d>28) {
+                    out.println("Dia fora do escpo");
+                }
+                this.dia =d;
+                break;
+            case 3:
+        }
+    }
 
 // gets
     public int retDia(){return  this.dia;}
@@ -60,7 +115,7 @@ public class Data {
     }
 
 
-    public boolean bisexto(int ano){
+    public boolean bisexto(){
         boolean anoBisexto;
         double bisexto = retAno()%4;
         if(bisexto !=0) {
