@@ -6,7 +6,7 @@ public class main {
     public  static void main(String[] args) {
 
         out.println("Inserindo por parametro");
-        Data dataParemetro = new Data(1999,2,05);
+        Data dataParemetro = new Data(1999,1,05);
         out.println(dataParemetro.mostra1());
 
         out.println("Mostrando os retornos da variaveis");
@@ -18,6 +18,8 @@ public class main {
 
         out.println(dataParemetro.mostra1());
         out.println(dataParemetro.mostra2());
+        dataParemetro.apresentaDataAtual();
+        dataParemetro.diasTranscorridos();
 
 
         out.println("Inserindo via interação usuario ");

@@ -1,4 +1,11 @@
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.lang.Object;
 import static java.lang.System.out;
 
 /**
@@ -236,33 +243,78 @@ public class Data {
         return dia + "/" + mes + "/" + ano;
       }
       public String mostra2() {
-        String dia, mes, ano, mesconvertido;
+        String mes,dia,ano;
           dia = this.retDia()<10 ?"0" +this.retDia() : Integer.toString(retDia());
-          ano = this.retAno()<10 ?"0" + this.retAno() : Integer.toString(retAno());
-          mes = this.retMes()==1? "Janeiro" : Integer.toString(retMes());
-          mes = this.retMes()==2?"Fevereiro" + this.retMes() : Integer.toString(retMes());
-          mes = this.retMes()==3?"Março" + this.retMes() : Integer.toString(retMes());
-          mes = this.retMes()==4?"Abril" + this.retMes() : Integer.toString(retMes());
-          mes = this.retMes()==5?"Maio" + this.retMes() : Integer.toString(retMes());
-          mes = this.retMes()==6?"Junho" + this.retMes() : Integer.toString(retMes());
-          mes = this.retMes()==7?"Julho" + this.retMes() : Integer.toString(retMes());
-          mes = this.retMes()==8?"Agosto" + this.retMes() : Integer.toString(retMes());
-          mes = this.retMes()==9?"Setembro" + this.retMes() : Integer.toString(retMes());
-          mes = this.retMes()==10?"Outubro" + this.retMes() : Integer.toString(retMes());
-          mes = this.retMes()==9?"Setembro" + this.retMes() : Integer.toString(retMes());
+          ano = this.retAno()<10?"0" + this.retAno() : Integer.toString(retAno());
 
 
-          if(retMes()>9) {
-              return dia + "/" +  mes.substring(0,mes.length()-2) + "/" + ano;
+          switch (retMes()) {
+             case 1 :
+                 mes = "Janeiro";
+                 return dia + "/" + mes + "/" + ano;
+
+              case 2:
+                  mes = "Fevereiro";
+                  return dia + "/" + mes + "/" + ano;
+
+              case 3:
+                  mes = "Março";
+                  return dia + "/" + mes + "/" + ano;
+
+              case 4:
+                  mes = "Abril";
+                  return dia + "/" + mes + "/" + ano;
+
+
+              case 5:
+                  mes = "Maio";
+                  return dia + "/" + mes + "/" + ano;
+
+              case 6:
+                  mes = "Junho";
+                  return dia + "/" + mes + "/" + ano;
+
+              case 7:
+                  mes = "Julho";
+                  return dia + "/" + mes + "/" + ano;
+
+              case 8:
+                  mes = "Agosto";
+                  return dia + "/" + mes + "/" + ano;
+
+              case 9:
+                  mes = "Setembro";
+                  return dia + "/" + mes + "/" + ano;
+
+              case 10:
+                  mes = "Outubro";
+                  return dia + "/" + mes + "/" + ano;
+
+              case 11:
+                  mes = "Novembro";
+                  return dia + "/" + mes + "/" + ano;
+
+              case 12:
+                  mes = "Dezembro";
+                  return dia + "/" + mes + "/" + ano;
+
+
+
           }
-          else {
-             return dia + "/" +  mes.substring(0,mes.length()-2) + "/" + ano;
-          }
+         return null;
 
+      }
 
+      public void apresentaDataAtual() {
+          DateTimeFormatter data = DateTimeFormatter.ofPattern("dd/MM/yyyy ");
+          System.out.println("A data atual é : "+data.format(LocalDateTime.now()));
 
-
-
+      }
+      public void diasTranscorridos() {
+          LocalDate begin = LocalDate.of(retAno(), Month.JANUARY, 01);
+          LocalDate end = LocalDate.of(retAno(), retMes(), retDia());
+          long days = ChronoUnit.DAYS.between(begin, end);
+          out.println("Dias Transcorridos : "+days + " dias");
       }
 
 
